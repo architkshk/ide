@@ -32,7 +32,7 @@
     name: 'settings',
     data () {
       return {
-        themeOptions: ['vs', 'vs-dark', 'hc-dark'],
+        themeOptions: ['vs', 'vs-dark', 'hc-black'],
         fontOptions: ['Lucida Console', 'Anonymous Pro', 'Courier', 'Droid Sans Mono', 'Inconsolata', 'Source Code Pro', 'Ubuntu Mono'],
         sizeOptions: Array(30).fill(0).map((el, ind) => 6 + (2 * ind)),
       }
