@@ -39,6 +39,8 @@
   #inoutbox {
     position: fixed;
     bottom: 0;
+    display: flex;
+    width: 100%;
     left: 0;
     z-index: 20;
   }

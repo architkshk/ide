@@ -2,16 +2,23 @@ var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
+var webpack = require('webpack')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
 module.exports = {
+  mode: 'development',
   entry: {
-    app: './src/main.js'
+    app: './src/main.js',
+		"json.worker": 'monaco-editor/esm/vs/language/json/json.worker',
+		"css.worker": 'monaco-editor/esm/vs/language/css/css.worker',
+		"html.worker": 'monaco-editor/esm/vs/language/html/html.worker',
+		"ts.worker": 'monaco-editor/esm/vs/language/typescript/ts.worker',
   },
   output: {
+    globalObject: 'self',
     path: config.build.assetsRoot,
     filename: '[name].js',
     publicPath: process.env.NODE_ENV === 'production'
@@ -63,5 +70,8 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+	plugins: [
+		new webpack.IgnorePlugin(/^((fs)|(path)|(os)|(crypto)|(source-map-support))$/, /vs(\/|\\)language(\/|\\)typescript(\/|\\)lib/)
+	],
 }

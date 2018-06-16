@@ -13,6 +13,12 @@
           <option v-for="size in sizeOptions" :value="size" :selected="setDefault('size',size)">{{size}}</option>
         </select>
       </div>
+      <div class="btn-group">
+        <b>Theme:</b>
+        <select @change="changeTheme">
+          <option v-for="theme in themeOptions" :value="theme" :selected="setDefault('theme',theme)">{{theme}}</option>
+        </select>
+      </div>
 
       <ul class="list-inline panel-actions">
         <li @click="resetEditor"><a href="#">Reset Defaults</a></li>
@@ -26,7 +32,7 @@
     name: 'settings',
     data () {
       return {
-        themeOptions: ['dawn', 'github', 'solarized_light', 'tomorrow', 'xcode', 'clouds_midnight', 'cobalt', 'idle_fingers', 'monokai', 'dark'],
+        themeOptions: ['vs', 'vs-dark', 'hc-dark'],
         fontOptions: ['Lucida Console', 'Anonymous Pro', 'Courier', 'Droid Sans Mono', 'Inconsolata', 'Source Code Pro', 'Ubuntu Mono'],
         sizeOptions: Array(30).fill(0).map((el, ind) => 6 + (2 * ind)),
       }
@@ -66,6 +72,7 @@
   li {
     position: relative;
     bottom: 26px;
+    float: right;
   }
   .panel{
     width: 100vw;

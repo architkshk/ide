@@ -33,7 +33,6 @@
     methods: {
       select(selected) {
           this.$store.commit('changeLanguage', selected) 
-
       },
       open() {
         this.isOpen = !this.isOpen 
@@ -44,3 +43,19 @@
     }
   } 
 </script>
+
+<style scoped>
+.open > .dropdown-menu {
+  display: list-item !important;
+  color: #262626;
+  font-size: 14px;
+  overflow: hidden;
+}
+.open > .dropdown-menu > li {
+  padding: 0 8px;
+}
+.open > .dropdown-menu > li:hover {
+  cursor: pointer;
+  background-color: #f5f5f5;
+}
+</style>

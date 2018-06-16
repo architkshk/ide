@@ -3,7 +3,7 @@
     <div class="row">
       <div>
         <menuBar>
-          <ace-editor :language=this.$store.state.language :content=this.$store.state.code></ace-editor>
+          <monaco-editor :language=this.$store.state.language :content=this.$store.state.code></monaco-editor>
         </menuBar>
       </div>
       <inoutbox></inoutbox>
@@ -15,14 +15,13 @@
 <script>
   import inoutbox from './editor/InOutBox.vue'
   import menuBar from './editor/MenuBar.vue'
-  import AceEditor from './editor/AceEditor.vue'
-  //
-  // console.log(editor);
+  import MonacoEditor from './editor/MonacoEditor.vue'
+
   export default {
     name: 'editor',
     components: {
       menuBar,
-      AceEditor,
+      MonacoEditor,
       inoutbox,
     },
     data() {
@@ -84,7 +83,7 @@
     border: none;
     box-shadow: none;
   }
-
+  
   .btn i {
     font-size: 12px;
   }
