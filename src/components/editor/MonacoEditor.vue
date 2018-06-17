@@ -24,9 +24,9 @@
         theme: this.$store.state.theme,
         scrollBeyondLastLine: false,
         quickSuggestions: true,
-        acceptSuggestionOnEnter: "smart",
+        acceptSuggestionOnEnter: "on",
         suggestOnTriggerCharacters: true,
-        wordBasedSuggestions: on,
+        wordBasedSuggestions: "on"
       }
       this.editor = 
         monaco.editor.create(document.getElementById('editor'),options);
