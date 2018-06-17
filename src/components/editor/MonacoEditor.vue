@@ -22,7 +22,11 @@
         renderIndentGuides: true,
         lineNumbersMinChars: 3,
         theme: this.$store.state.theme,
-        scrollBeyondLastLine: false
+        scrollBeyondLastLine: false,
+        quickSuggestions: true,
+        acceptSuggestionOnEnter: "smart",
+        suggestOnTriggerCharacters: true,
+        wordBasedSuggestions: on,
       }
       this.editor = 
         monaco.editor.create(document.getElementById('editor'),options);
