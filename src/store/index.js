@@ -159,10 +159,7 @@ export default new Vuex.Store({
           commit('fileNameChange', data.fileName)
           commit('setCheckData', data.code)
         })
-
         state.changedLang = false
-        if(state.changedLang)
-          this.app.router.push({name: 'saved', params: {id: pasteId}})
     },
     
     saveDataToServer({state, commit, dispatch}) {

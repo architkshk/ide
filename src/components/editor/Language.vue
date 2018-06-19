@@ -39,6 +39,11 @@
               id : data.id
             }
             this.$store.dispatch('changeLanguage', saved)
+            let currentid = this.$store.state.session[this.$store.state.language]
+            if (currentid)
+              this.$router.push({name: 'saved', params: {id: currentid}})
+            else
+              this.$router.push('/')
           })
       },
       open() {
