@@ -32,16 +32,12 @@
     },
     methods: {
       select(selected) {
-        console.log("Place 1");
         this.$store.dispatch('saveDataToServer')
           .then(({data}) => {
             let saved = {
               selected : selected,
               id : data.id
             }
-            console.log("Place 2");
-
-        console.log(saved);
             this.$store.dispatch('changeLanguage', saved)
           })
       },

@@ -133,24 +133,19 @@ export default new Vuex.Store({
     },
 
     changeLanguage({state, commit, dispatch}, val) {
-      console.log("place 3");
       state.session[state.language] = val.id
-      console.log(state.session);
       commit('selectLanguage', val.selected)
-      console.log(state.language);
       state.changedLang = true
       dispatch('loadDataFromServer')
     },
 
     loadDataFromServer({state, commit, dispatch}) {
-      const pasteId = state.changedLang ? state.session[state.language]:state.route.params.id
       
-      console.log("Place 4");
       if(state.changedLang && !state.session[state.language]){
         commit('satCode',samples[state.language])
         return;
       }
-      console.log(pasteId);
+      const pasteId = state.changedLang ? state.session[state.language]:state.route.params.id
       if (!state.changedLang && state.route.name !== 'saved') {
         return
       }
@@ -163,19 +158,16 @@ export default new Vuex.Store({
           commit('changeCustomInput', data.customInput)
           commit('fileNameChange', data.fileName)
           commit('setCheckData', data.code)
-
-        console.log("Place 5");
         })
 
-        console.log("Place 6");
         state.changedLang = false
         if(state.changedLang)
-          this.$router.push({name: 'saved', params: {id: pasteId}})
+          this.app.router.push({name: 'saved', params: {id: pasteId}})
     },
     
     saveDataToServer({state, commit, dispatch}) {
       if (state.checkData == shajs('sha256').update(state.code).digest('hex'))
-        return;
+        return {data: {id : state.session[state.language]}} ;
       else {
         return axios.post(`https://ide.cb.lk/code/`, {
           id: (void 0),
