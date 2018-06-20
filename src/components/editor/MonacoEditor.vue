@@ -10,6 +10,7 @@
     mounted() {
       addEventListener('dragover', this.dragOverHandler, false)
       addEventListener('drop', this.dropHandler, false)
+      addEventListener('keydown', this.saveHandler, false)
 
       this.editor = 
         monaco.editor.create(document.getElementById('editor'), {
@@ -81,6 +82,7 @@
     destroyed() {
       removeEventListener('dragover', this.dragOverHandler, false)
       removeEventListener('drop', this.dropHandler, false)
+      removeEventListener('keydown', this.saveHandler, false)
     },
     methods: {
       resetCodeShortcut(e) {
@@ -92,6 +94,23 @@
       dragOverHandler(e) {
         e.preventDefault()
         e.stopPropagation()
+      },
+      saveHandler(e)  {
+        if ((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 83) {
+          e.preventDefault();
+          this.$store.dispatch('saveDataToServer')
+          .then(({data}) => {
+            this.$router.push({name: 'saved', params: {id: data.id}})
+            const code = this.$store.state.code[this.$store.state.language]
+            const el = document.createElement('a')
+            el.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(code))
+            el.setAttribute('download', data.id + '.' + this.$store.state.languageMode)
+            el.style.display = 'none'
+            document.body.appendChild(el)
+            document.body.removeChild(el)
+            el.click()
+          })
+        }
       },
       dropHandler(e) {
          e.preventDefault()
